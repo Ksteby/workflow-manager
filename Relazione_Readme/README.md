@@ -18,21 +18,21 @@ Un'applicazione web completa per la gestione dei progetti e delle attività lavo
 
 * **Frontend:** React.js, Framer Motion (per le animazioni), @hello-pangea/dnd (per il Drag & Drop), React-Toastify (per il sistema di notifiche).
 * **Backend:** Node.js, Express.js.
-* **Database:** JSON basato su file system (`data.json`) per uno storage leggero e portabile, gestito tramite un modulo custom (`dataManager.js`).
+* **Database:** JSON basato su file system ('data.json') per uno storage leggero e portabile, gestito tramite un modulo custom (`dataManager.js`).
 * **Sicurezza:** Bcrypt.js per l'hashing delle password.
 
 ## ⚙️ Installazione e Avvio
 
 1. **Clona il repository:**
    ```bash
-   git clone [https://github.com/tuo-username/workflow-manager.git](https://github.com/Ksteby/workflow-manager.git)
+   git clone [https://github.com/Ksteby/workflow-manager.git](https://github.com/Ksteby/workflow-manager.git)
    cd workflow-manager
 
 2. **Avvia il Backend (server)
     cd server
     npm install
     node server.js   
-    Il server sara in ascolto sulla porta 5000
+    Il server sarà in ascolto sulla porta 5000
 
 3. **Avvia il Frontend (client)
      cd client
