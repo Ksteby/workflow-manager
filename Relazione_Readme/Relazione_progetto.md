@@ -29,7 +29,7 @@ Durante lo sviluppo, sono state affrontate e risolte diverse sfide tecniche di l
     Inizialmente, l'ingresso di un nuovo utente tramite "Invite Link" causava problemi di asincronia tra la creazione dell'account e l'inserimento nel team. La soluzione definitiva ha previsto l'ingegnerizzazione della rotta API `/register` e `/login` affinché elaborassero il *token di invito* nella medesima transazione lato server, garantendo l'aggiunta al team e la restituzione dei dati aggiornati in un'unica risposta sincrona.
 2.  **Calcolo accurato delle scadenze (Timezone Bug):**
     Il confronto delle date di scadenza (Deadlines) presentava criticità dovute all'interpretazione in formato UTC da parte di JavaScript, che sfalsava il riconoscimento del ritardo. Si è risolto analizzando ("parsing") manualmente la stringa YYYY-MM-DD e istanziando l'oggetto 'Date' forzandolo al fuso orario locale dell'utente.
-3.  *3.  **Ottimizzazione della UX e Feedback Asincrono:**
+3.  **Ottimizzazione della UX e Feedback Asincrono:**
     Per evitare il sovraccarico cognitivo dell'interfaccia, le azioni secondarie (gestione membri, cambio tema, logout) sono state incapsulate in un menu a tendina intelligente che implementa il pattern *click-outside* per la chiusura automatica. Inoltre, per fornire un feedback immediato sulle operazioni CRUD (creazione, modifica, eliminazione) e sui processi di autenticazione, è stata integrata la libreria `react-toastify`. Questo sistema di notifiche "Toast" comunica all'utente l'esito delle richieste al server (successo o errore) in modo elegante e non bloccante, elevando la percezione qualitativa dell'applicativo agli standard professionali.
 
 #### 5. Sviluppi Futuri
