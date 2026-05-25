@@ -1,0 +1,342 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Alice",
+      "password": "$2b$10$abcdefghijklmnopqrstuv",
+      "role": "admin"
+    },
+    {
+      "id": 2,
+      "name": "Bob",
+      "password": "$2b$10$abcdefghijklmnopqrstuv",
+      "role": "user"
+    },
+    {
+      "id": 1779577595113,
+      "name": "Kemo",
+      "password": "$2b$10$XgZJKhULmSUCo1smRj8MHuSBFcbqHAxRSYwhCJAJb2oOd8lHIXtSS",
+      "role": "user"
+    },
+    {
+      "id": 1779626361995,
+      "name": "Luca Cavallo",
+      "password": "$2b$10$yzecT4AWuWIupcheE.yAJu5NbRMtBlEPY2wicS4u2a7d2892VLjTK",
+      "role": "user"
+    },
+    {
+      "id": 1779638294754,
+      "name": "Francesco Panne",
+      "password": "$2b$10$zHVIMtktzn83Aolr/jvVJe1OdfSwKZnOymEAIknuWMk1nrVxRQAUO",
+      "role": "user"
+    },
+    {
+      "id": 1779640497933,
+      "name": "Alex",
+      "password": "$2b$10$bR/MgxFdUKHPh9ZpdJaPYOHYT6Rje3I6vimVXmxkfNNcXprxZuM6y",
+      "role": "user"
+    },
+    {
+      "id": 1779655236664,
+      "name": "Asta",
+      "password": "$2b$10$Af5QxBbwQJuyb3odHtA3zuNus0dudjJevpsKaK5uCMCb6zKER6OJS",
+      "role": "user"
+    },
+    {
+      "id": 1779657602954,
+      "name": "Boby",
+      "password": "$2b$10$XShJnSSizFDbWgPP3/yPS..IoqmZPQohOTe0gwdO.zERYxTv2YJ9W",
+      "role": "user"
+    },
+    {
+      "id": 1779657879071,
+      "name": "Franco Belli",
+      "password": "$2b$10$0jOETCrwDRj40dr2cpDuhuMye2FTrz0O18hCJ77sXYt6lpIpQKKn2",
+      "role": "user"
+    }
+  ],
+  "workspaces": [
+    {
+      "id": "workspace-1",
+      "type": "personal",
+      "ownerId": 1,
+      "name": "Alice Workspace"
+    },
+    {
+      "id": "workspace-2",
+      "type": "personal",
+      "ownerId": 2,
+      "name": "Bob Workspace"
+    },
+    {
+      "id": "team-1",
+      "type": "team",
+      "ownerId": 1,
+      "name": "Project Team",
+      "members": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "team-1779634794785",
+      "type": "team",
+      "ownerId": 1779626361995,
+      "name": "Progetto",
+      "members": [
+        1779626361995
+      ]
+    },
+    {
+      "id": "team-1779659445337",
+      "type": "team",
+      "ownerId": 1779638294754,
+      "name": "Reunione dello staff",
+      "members": [
+        1779638294754,
+        1779657879071,
+        1779655236664,
+        1779657602954
+      ],
+      "admins": [
+        1779638294754,
+        1779657879071
+      ]
+    },
+    {
+      "id": "team-1779659980506",
+      "type": "team",
+      "ownerId": 1779657879071,
+      "name": "Staff",
+      "members": [
+        1779657879071
+      ],
+      "admins": [
+        1779657879071
+      ]
+    }
+  ],
+  "columns": [
+    {
+      "id": "column-1",
+      "workspaceId": "workspace-1",
+      "title": "To Do",
+      "position": 0
+    },
+    {
+      "id": "column-2",
+      "workspaceId": "workspace-1",
+      "title": "In Progress",
+      "position": 1
+    },
+    {
+      "id": "column-3",
+      "workspaceId": "workspace-1",
+      "title": "Done",
+      "position": 2
+    },
+    {
+      "id": "column-4",
+      "workspaceId": "team-1",
+      "title": "Planning",
+      "position": 0
+    },
+    {
+      "id": "column-5",
+      "workspaceId": "team-1",
+      "title": "Development",
+      "position": 1
+    },
+    {
+      "id": "column-1779634611156",
+      "workspaceId": "workspace-1779626361995",
+      "title": "to do",
+      "position": 0
+    },
+    {
+      "id": "column-1779634627856",
+      "workspaceId": "workspace-1779626361995",
+      "title": "completed",
+      "position": 2
+    },
+    {
+      "id": "column-1779634766036",
+      "workspaceId": "workspace-1779626361995",
+      "title": "urgent",
+      "position": 1
+    },
+    {
+      "id": "column-1779638346906",
+      "workspaceId": "workspace-1779638294754",
+      "title": "Completed",
+      "position": 1
+    },
+    {
+      "id": "column-1779638494269",
+      "workspaceId": "workspace-1779638294754",
+      "title": "Urgent",
+      "position": 0
+    },
+    {
+      "id": "column-1779659468884",
+      "workspaceId": "team-1779659445337",
+      "title": "Briefing",
+      "position": 0
+    },
+    {
+      "id": "column-1779699124737",
+      "workspaceId": "team-1779659445337",
+      "title": "Rapporto",
+      "position": 0
+    }
+  ],
+  "tasks": [
+    {
+      "id": "task-1",
+      "workspaceId": "workspace-1",
+      "columnId": "column-1",
+      "title": "Study React",
+      "description": "Learn React components and hooks",
+      "priority": "High",
+      "startDate": "2026-05-20",
+      "endDate": "2026-05-28",
+      "assigneeId": 1,
+      "createdBy": 1,
+      "position": 0,
+      "comments": [
+        {
+          "id": "comment-1",
+          "authorId": 1,
+          "text": "Important task",
+          "date": "2026-05-22T10:00:00Z"
+        }
+      ]
+    },
+    {
+      "id": "task-2",
+      "workspaceId": "team-1",
+      "columnId": "column-4",
+      "title": "Prepare presentation",
+      "description": "Create project slides",
+      "priority": "Medium",
+      "startDate": "2026-05-21",
+      "endDate": "2026-05-29",
+      "assigneeId": 2,
+      "createdBy": 1,
+      "position": 1,
+      "comments": []
+    },
+    {
+      "id": "task-1779634650223",
+      "workspaceId": "workspace-1779626361995",
+      "columnId": "column-1779634627856",
+      "title": "Faire les courses",
+      "description": "",
+      "priority": "Low",
+      "startDate": null,
+      "endDate": null,
+      "assigneeId": null,
+      "createdBy": 1779626361995,
+      "position": 1,
+      "comments": []
+    },
+    {
+      "id": "task-1779634833175",
+      "workspaceId": "workspace-1779626361995",
+      "columnId": "column-1779634627856",
+      "title": "Faire le sport",
+      "description": "",
+      "priority": "Medium",
+      "startDate": null,
+      "endDate": null,
+      "assigneeId": null,
+      "createdBy": 1779626361995,
+      "position": 1,
+      "comments": []
+    },
+    {
+      "id": "task-1779636193422",
+      "workspaceId": "workspace-1779626361995",
+      "columnId": "column-1779634611156",
+      "title": "Achats",
+      "description": "",
+      "priority": "Medium",
+      "startDate": null,
+      "endDate": null,
+      "assigneeId": null,
+      "createdBy": 1779626361995,
+      "position": 0,
+      "comments": []
+    },
+    {
+      "id": "task-1779638366651",
+      "workspaceId": "workspace-1779638294754",
+      "columnId": "column-1779638346906",
+      "title": "Fare la spesa",
+      "description": "",
+      "priority": "High",
+      "startDate": "",
+      "endDate": "2026-05-28",
+      "assigneeId": null,
+      "createdBy": 1779638294754,
+      "position": 1,
+      "comments": []
+    },
+    {
+      "id": "task-1779638384164",
+      "workspaceId": "workspace-1779638294754",
+      "columnId": "column-1779638346906",
+      "title": "Leggere un libro",
+      "description": "",
+      "priority": "Medium",
+      "startDate": null,
+      "endDate": "",
+      "assigneeId": null,
+      "createdBy": 1779638294754,
+      "position": 0,
+      "comments": []
+    },
+    {
+      "id": "task-1779659482288",
+      "workspaceId": "team-1779659445337",
+      "columnId": "column-1779659468884",
+      "title": "Presentazione dei membri",
+      "description": "Présentation détaillée de chaque membre\n",
+      "priority": "Low",
+      "startDate": "",
+      "endDate": "",
+      "assigneeId": 1779655236664,
+      "createdBy": 1779638294754,
+      "position": 2,
+      "comments": []
+    },
+    {
+      "id": "task-1779659501535",
+      "workspaceId": "team-1779659445337",
+      "columnId": "column-1779659468884",
+      "title": "Descrizione delle attività",
+      "description": "",
+      "priority": "High",
+      "startDate": null,
+      "endDate": null,
+      "assigneeId": 1779657879071,
+      "createdBy": 1779638294754,
+      "position": 1,
+      "comments": []
+    },
+    {
+      "id": "task-1779659563448",
+      "workspaceId": "team-1779659445337",
+      "columnId": "column-1779659468884",
+      "title": "Inizio",
+      "description": "",
+      "priority": "Medium",
+      "startDate": null,
+      "endDate": null,
+      "assigneeId": null,
+      "createdBy": 1779638294754,
+      "position": 0,
+      "comments": []
+    }
+  ]
+}
