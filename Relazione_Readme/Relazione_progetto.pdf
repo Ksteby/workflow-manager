@@ -1,4 +1,4 @@
-**Titolo:** Relazione di Progetto: Sviluppo di una piattaforma collaborativa per la getione delle attività.
+**Titolo:** Relazione di Progetto: Sviluppo di una piattaforma collaborativa per la gestione delle attività.
 **Studenti:** KEMO TOUOHOU STEBY & FOUEZE MERVEILLE
 **Corso:** Tecnologie Internet
 
