@@ -1,39 +1,39 @@
-**Titolo:** Relazione di Progetto: Sviluppo di una piattaforma collaborativa per la gestione delle attività.
+**Titre :** Rapport de projet : Développement d'une plateforme collaborative pour la gestion des tâches.
 
-**Studenti:** KEMO TOUOHOU STEBY & FOUEZE MERVEILLE
+**Étudiants :** KEMO TOUOHOU STEBY 
 
-**Corso:** Tecnologie Internet
+**Cours :** Technologies Internet
 
-#### 1. Introduzione
+#### 1. Introduction
 
-Il presente documento descrive l'architettura, le funzionalità e le scelte implementative relative al progetto "Workflow Manager". L'obiettivo è stato quello di sviluppare un'applicazione Single Page Application (SPA) per la gestione collaborativa di task, ispirata alle moderne piattaforme di project management lavorativo. L'applicativo supporta sia un uso individuale (Espace Personale) sia un uso collaborativo (Team), garantendo sicurezza, consistenza dei dati e un'esperienza utente (UX) fluida.
+Le présent document décrit l'architecture, les fonctionnalités et les choix de mise en œuvre relatifs au projet « Workflow Manager ». L'objectif était de développer une application monopage (SPA) pour la gestion collaborative des tâches, inspirée des plateformes modernes de gestion de projets professionnels. L'application prend en charge à la fois une utilisation individuelle (Espace Personnel) et une utilisation collaborative (Équipe), garantissant la sécurité, la cohérence des données et une expérience utilisateur (UX) fluide.
 
-#### 2. Architettura di Sistema
+#### 2. Architecture du système
 
-Il sistema è stato sviluppato seguendo un'architettura Client-Server:
-* **Frontend (Client):** Sviluppato in React.js, gestisce lo stato dell'applicazione in modo reattivo. Per simulare la reattività in tempo reale è stato implementato un meccanismo di *Polling* (intervallo di 5 secondi) che sincronizza costantemente l'interfaccia con il database.
-* **Backend (Server):** Implementato con Node.js ed Express. Fornisce un'API RESTful per la gestione delle risorse (Utenti, Team, Colonne, Task).
-* **Persistenza dei Dati:** Per mantenere il progetto leggero ed eseguibile in qualsiasi ambiente senza dipendenze esterne, si è optato per un database basato su file system (`data.json`). L'accesso al file è gestito tramite un modulo dedicato (`dataManager.js`) per prevenire corruzioni dei dati.
+Le système a été développé selon une architecture client-serveur :
+* **Frontend (client) :** développé en React.js, il gère l'état de l'application de manière réactive. Pour simuler la réactivité en temps réel, un mécanisme de *polling* (intervalle de 5 secondes) a été mis en place afin de synchroniser en permanence l'interface avec la base de données.
+* **Backend (serveur) :** Implémenté avec Node.js et Express. Il fournit une API RESTful pour la gestion des ressources (utilisateurs, équipes, colonnes, tâches).
+* **Persistance des données :** Afin de conserver un projet léger et exécutable dans n'importe quel environnement sans dépendances externes, le choix s'est porté sur une base de données basée sur le système de fichiers (`data.json`). L'accès au fichier est géré via un module dédié (`dataManager.js`) afin d'éviter toute corruption des données.
 
-#### 3. Funzionalità e Controllo degli Accessi 
+#### 3. Fonctionnalités et contrôle d'accès 
 
-Un focus particolare è stato posto sulla sicurezza e sui permessi. È stato implementato un sistema di *Role-Based Access Control*:
-* **Gestione Team:** Il creatore di un team diventa automaticamente *Owner*. L'Owner può promuovere altri membri al ruolo di *Admin*, espellere membri, o eliminare l'intero team.
-* **Privilegi sulle Task:** Nei progetti di team, le task possono essere modificate o eliminate solo dagli amministratori o dall'utente specificamente assegnato a quella task. Per gli altri membri, la task viene presentata in una modalità "Sola Lettura" (Read-Only) per preservare l'integrità del flusso di lavoro.
-* **Isolamento dei Dati:** Gli utenti standard non possono visualizzare la lista globale degli iscritti all'applicazione, ma unicamente i membri appartenenti ai propri team, garantendo così la privacy.
+Une attention particulière a été accordée à la sécurité et aux autorisations. Un système de *contrôle d'accès basé sur les rôles* a été mis en place :
+* **Gestion des équipes :** Le créateur d'une équipe devient automatiquement *propriétaire*. Le propriétaire peut promouvoir d'autres membres au rôle d'*administrateur*, exclure des membres ou supprimer l'équipe entière.
+* **Privilèges sur les tâches :** Dans les projets d'équipe, les tâches ne peuvent être modifiées ou supprimées que par les administrateurs ou par l'utilisateur spécifiquement affecté à cette tâche. Pour les autres membres, la tâche est présentée en mode « lecture seule » (Read-Only) afin de préserver l'intégrité du flux de travail.
+* **Isolation des données :** Les utilisateurs standard ne peuvent pas consulter la liste globale des inscrits à l'application, mais uniquement les membres appartenant à leurs propres équipes, garantissant ainsi la confidentialité.
 
-#### 4. Sfide Tecniche e Soluzioni Implementative
-Durante lo sviluppo, sono state affrontate e risolte diverse sfide tecniche di livello avanzato:
+#### 4. Défis techniques et solutions de mise en œuvre
+Au cours du développement, plusieurs défis techniques de haut niveau ont été relevés et résolus :
 
-1.  **Gestione delle "Race Conditions" nel flusso di invito:**
-    Inizialmente, l'ingresso di un nuovo utente tramite "Invite Link" causava problemi di asincronia tra la creazione dell'account e l'inserimento nel team. La soluzione definitiva ha previsto l'ingegnerizzazione della rotta API `/register` e `/login` affinché elaborassero il *token di invito* nella medesima transazione lato server, garantendo l'aggiunta al team e la restituzione dei dati aggiornati in un'unica risposta sincrona.
-2.  **Calcolo accurato delle scadenze (Timezone Bug):**
-    Il confronto delle date di scadenza (Deadlines) presentava criticità dovute all'interpretazione in formato UTC da parte di JavaScript, che sfalsava il riconoscimento del ritardo. Si è risolto analizzando ("parsing") manualmente la stringa YYYY-MM-DD e istanziando l'oggetto 'Date' forzandolo al fuso orario locale dell'utente.
-3.  **Ottimizzazione della UX e Feedback Asincrono:**
-    Per evitare il sovraccarico cognitivo dell'interfaccia, le azioni secondarie (gestione membri, cambio tema, logout) sono state incapsulate in un menu a tendina intelligente che implementa il pattern *click-outside* per la chiusura automatica. Inoltre, per fornire un feedback immediato sulle operazioni CRUD (creazione, modifica, eliminazione) e sui processi di autenticazione, è stata integrata la libreria `react-toastify`. Questo sistema di notifiche "Toast" comunica all'utente l'esito delle richieste al server (successo o errore) in modo elegante e non bloccante, elevando la percezione qualitativa dell'applicativo agli standard professionali.
+1.  **Gestion des « conditions de concurrence » dans le flux d'invitation :**
+    Au départ, l'arrivée d'un nouvel utilisateur via un « lien d'invitation » entraînait des problèmes d'asynchronisme entre la création du compte et l'intégration dans l'équipe. La solution définitive a consisté à réorganiser les routes API `/register` et `/login` afin qu'elles traitent le *token d'invitation* dans la même transaction côté serveur, garantissant ainsi l'ajout à l'équipe et le renvoi des données mises à jour en une seule réponse synchrone.
+2.  **Calcul précis des échéances (bug de fuseau horaire) :**
+    La comparaison des dates d'échéance (Deadlines) présentait des problèmes dus à l'interprétation au format UTC par JavaScript, ce qui faussait la reconnaissance du retard. Le problème a été résolu en analysant (« parsing ») manuellement la chaîne YYYY-MM-DD et en instanciant l'objet « Date » en le forçant au fuseau horaire local de l'utilisateur.
+3.  **Optimisation de l'expérience utilisateur et retour d'information asynchrone :**
+    Afin d'éviter la surcharge cognitive de l'interface, les actions secondaires (gestion des membres, changement de thème, déconnexion) ont été regroupées dans un menu déroulant intelligent qui utilise le modèle *click-outside* pour la fermeture automatique. De plus, afin de fournir un retour d'information immédiat sur les opérations CRUD (création, modification, suppression) et les processus d'authentification, la bibliothèque `react-toastify` a été intégrée. Ce système de notifications « Toast » communique à l'utilisateur le résultat des requêtes adressées au serveur (succès ou erreur) de manière élégante et non bloquante, élevant ainsi la perception qualitative de l'application aux standards professionnels.
 
-#### 5. Sviluppi Futuri
-Sebbene l'applicazione sia completa, futuri sviluppi potrebbero includere la migrazione del database su un sistema relazionale (es. PostgreSQL) o NoSQL (es. MongoDB) per supportare un'elevata concorrenza, e l'integrazione di WebSockets (es. Socket.io) in sostituzione al Polling per un aggiornamento in tempo reale più efficiente.
+#### 5. Évolutions futures
+Bien que l'application soit complète, les évolutions futures pourraient inclure la migration de la base de données vers un système relationnel (par exemple PostgreSQL) ou NoSQL (par exemple MongoDB) pour faire face à une forte concurrence, et l'intégration de WebSockets (par exemple Socket.io) en remplacement du polling, afin d'assurer une mise à jour en temps réel plus efficace.
 
-#### 6. Conclusioni
-Il progetto "Workflow Manager" si presenta come una soluzione solida, scalabile e sicura. Le scelte progettuali adottate dimostrano una comprensione approfondita del ciclo di vita dei dati, della sicurezza lato server e della gestione reattiva delle interfacce utente in React.
+#### 6. Conclusions
+Le projet « Workflow Manager » s'impose comme une solution robuste, évolutive et sécurisée. Les choix techniques retenus témoignent d'une compréhension approfondie du cycle de vie des données, de la sécurité côté serveur et de la gestion réactive des interfaces utilisateur sous React.
